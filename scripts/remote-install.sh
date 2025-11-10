@@ -57,63 +57,6 @@ fi
 # Print banner
 print_banner "📝 Obsidian Vault Skill - Remote Installer"
 
-# Interactive mode - ask user what to install
-if [ "$INSTALL_MODE" = "interactive" ]; then
-    echo -e "${BLUE}Select installation target:${NC}"
-    echo ""
-    echo "  1. Claude Code - User level (~/.claude/skills/)"
-    echo "  2. Claude Code - Project level (./.claude/skills/)"
-    echo "  3. Claude Desktop/Web - Download zip file"
-    echo "  4. Exit"
-    echo ""
-    read -p "Enter choice (1-4): " -n 1 -r CHOICE
-    echo ""
-    echo ""
-
-    case $CHOICE in
-        1)
-            INSTALL_MODE="user"
-            ;;
-        2)
-            INSTALL_MODE="project"
-            ;;
-        3)
-            INSTALL_MODE="desktop"
-            ;;
-        4)
-            echo "Installation cancelled"
-            exit 0
-            ;;
-        *)
-            echo -e "${RED}✗${NC} Invalid choice"
-            exit 1
-            ;;
-    esac
-fi
-
-# Execute installation based on mode
-case $INSTALL_MODE in
-    user)
-        install_to_user_level
-        configure_api_key
-        echo ""
-        show_next_steps
-        ;;
-    project)
-        install_to_project_level
-        configure_api_key
-        echo ""
-        show_next_steps
-        ;;
-    desktop)
-        install_claude_desktop
-        ;;
-    *)
-        echo -e "${RED}✗${NC} Unknown installation mode"
-        exit 1
-        ;;
-esac
-
 # Function to download zip for Claude Desktop
 install_claude_desktop() {
     echo -e "${GREEN}➜${NC} Downloading package for Claude Desktop/Web..."
@@ -194,3 +137,75 @@ install_claude_desktop() {
     echo -e "${GREEN}✨ Package ready for upload!${NC}"
     echo ""
 }
+
+# Interactive mode - ask user what to install
+if [ "$INSTALL_MODE" = "interactive" ]; then
+    # Check if stdin is a TTY (interactive terminal)
+    if [ -t 0 ]; then
+        echo -e "${BLUE}Select installation target:${NC}"
+        echo ""
+        echo "  1. Claude Code - User level (~/.claude/skills/)"
+        echo "  2. Claude Code - Project level (./.claude/skills/)"
+        echo "  3. Claude Desktop/Web - Download zip file"
+        echo "  4. Exit"
+        echo ""
+        read -p "Enter choice (1-4): " -r CHOICE
+        echo ""
+        echo ""
+
+        case $CHOICE in
+            1)
+                INSTALL_MODE="user"
+                ;;
+            2)
+                INSTALL_MODE="project"
+                ;;
+            3)
+                INSTALL_MODE="desktop"
+                ;;
+            4)
+                echo "Installation cancelled"
+                exit 0
+                ;;
+            *)
+                echo -e "${RED}✗${NC} Invalid choice"
+                exit 1
+                ;;
+        esac
+    else
+        # Non-interactive mode (piped input) - default to user-level installation
+        echo -e "${YELLOW}⚠️  Running in non-interactive mode${NC}"
+        echo ""
+        echo -e "${BLUE}Available options:${NC}"
+        echo "  curl ... | bash -s -- --user       # User level"
+        echo "  curl ... | bash -s -- --project    # Project level"
+        echo "  curl ... | bash -s -- --desktop    # Desktop/Web zip"
+        echo ""
+        echo -e "${GREEN}Defaulting to user-level installation...${NC}"
+        echo ""
+        INSTALL_MODE="user"
+    fi
+fi
+
+# Execute installation based on mode
+case $INSTALL_MODE in
+    user)
+        install_to_user_level
+        configure_api_key
+        echo ""
+        show_next_steps
+        ;;
+    project)
+        install_to_project_level
+        configure_api_key
+        echo ""
+        show_next_steps
+        ;;
+    desktop)
+        install_claude_desktop
+        ;;
+    *)
+        echo -e "${RED}✗${NC} Unknown installation mode"
+        exit 1
+        ;;
+esac
