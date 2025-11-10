@@ -1,4 +1,11 @@
-# Obsidian Skill Design Document
+# ADR-001: Skill Architecture and Integration Method
+
+**Status**: Accepted
+**Date**: 2025-11-10
+**Decision Makers**: Development Team
+**Related**: ADR-002 (Destructive Operation Guardrails), ADR-003 (Automatic Backup System), ADR-004 (SKILL.md Design)
+
+---
 
 ## Project Overview
 
@@ -575,7 +582,10 @@ Claude Code/Desktop
 
 ## References
 
-- Obsidian Local REST API: https://github.com/coddingtonbear/obsidian-local-rest-api
-- OpenAPI Specification: `docs/openapi.yaml` (2080 lines)
-- API Endpoints: `docs/api-endpoints.md` (31 endpoints documented)
-- Destructive Operations: `docs/destructive-operation-list.md` (17 operations detailed)
+- **ADR-002**: Destructive Operation Guardrails
+- **ADR-003**: Automatic Backup System
+- **ADR-004**: SKILL.md Design and Structure
+- **Obsidian Local REST API**: https://github.com/coddingtonbear/obsidian-local-rest-api
+- **OpenAPI Specification**: `docs/openapi.yaml` (2080 lines)
+- **API Endpoints**: `docs/api-endpoints.md` (31 endpoints documented)
+- **Destructive Operations**: `docs/destructive-operation-list.md` (17 operations detailed)

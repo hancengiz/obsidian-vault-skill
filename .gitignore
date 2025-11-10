@@ -1,0 +1,78 @@
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Configuration files with secrets
+obsidian_config.json
+config.json
+secrets.json
+
+# API keys and tokens
+*.key
+*.token
+api_keys.txt
+
+# Claude Code project settings (may contain API keys)
+# Uncomment if your .claude/settings.json contains secrets
+# .claude/settings.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# OS specific
+Thumbs.db
