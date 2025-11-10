@@ -50,6 +50,15 @@ Capture a quick note to today's daily note with timestamp and clean formatting.
 ## Example Daily Note Structure
 
 ```markdown
+---
+title: Daily Note - 2024-11-11
+date: 2024-11-11
+tags:
+  - daily
+  - 2024-11
+type: daily
+---
+
 # 2024-11-11
 
 ## Quick Notes
@@ -86,7 +95,17 @@ base_url = os.getenv('OBSIDIAN_SKILL_API_URL', 'https://localhost:27124')
 headers = {'Authorization': f'Bearer {api_key}'}
 
 today = datetime.now().strftime("%Y-%m-%d")
-daily_note_content = f"""# {today}
+year_month = datetime.now().strftime("%Y-%m")
+daily_note_content = f"""---
+title: Daily Note - {today}
+date: {today}
+tags:
+  - daily
+  - {year_month}
+type: daily
+---
+
+# {today}
 
 ## Quick Notes
 

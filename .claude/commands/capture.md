@@ -18,7 +18,7 @@ allowed-tools:
 
 ## Your Task
 
-Create a smart capture item that automatically routes to the appropriate location in your Obsidian vault using intelligent categorization.
+Create a smart capture item that automatically routes to the appropriate location in your Obsidian vault using intelligent categorization. All notes include proper frontmatter with date and tags.
 
 ### Detection Rules
 
